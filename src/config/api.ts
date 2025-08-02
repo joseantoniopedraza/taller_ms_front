@@ -1,6 +1,6 @@
 // Configuración de la API
 export const API_CONFIG = {
-  baseUrl: process.env.NEXT_PUBLIC_API_URL || 'http://taller-ms-persistence:3001',
+  baseUrl: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001',
   endpoints: {
     clients: '/clients',
   },
