@@ -4,13 +4,37 @@ import { Client } from '@/types';
 
 interface ClientListProps {
   users: Client[];
+  loading?: boolean;
+  onRefresh?: () => void;
 }
 
-export default function ClientList({ users }: ClientListProps) {
-  if (users.length === 0) {
+export default function ClientList({ users, loading = false, onRefresh }: ClientListProps) {
+  if (loading) {
     return (
       <div className="bg-white rounded-lg shadow-md p-6">
         <h2 className="text-2xl font-bold text-gray-800 mb-6">Lista de Clientes</h2>
+        <div className="flex items-center justify-center py-8">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+          <span className="ml-3 text-gray-600">Cargando clientes...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (users.length === 0) {
+    return (
+      <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold text-gray-800">Lista de Clientes</h2>
+          {onRefresh && (
+            <button
+              onClick={onRefresh}
+              className="px-3 py-1 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+            >
+              Actualizar
+            </button>
+          )}
+        </div>
         <p className="text-gray-500 text-center py-8">
           No hay clientes registrados aún.
         </p>
@@ -20,9 +44,19 @@ export default function ClientList({ users }: ClientListProps) {
 
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">
-        Lista de Clientes ({users.length})
-      </h2>
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-2xl font-bold text-gray-800">
+          Lista de Clientes ({users.length})
+        </h2>
+        {onRefresh && (
+          <button
+            onClick={onRefresh}
+            className="px-3 py-1 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+          >
+            Actualizar
+          </button>
+        )}
+      </div>
       
       <div className="space-y-4">
         {users.map((user) => (
