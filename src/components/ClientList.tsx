@@ -29,20 +29,20 @@ export default function ClientList({ users }: ClientListProps) {
           <div key={user.id} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition-colors">
             <div className="flex flex-col space-y-2">
               <div className="flex items-center space-x-2">
-                <span className="font-semibold text-gray-800">{user.nombre}</span>
+                <span className="font-semibold text-gray-800">{user.name}</span>
                 <span className="text-gray-500">•</span>
                 <a 
-                  href={`mailto:${user.mail}`}
+                  href={`mailto:${user.email}`}
                   className="text-blue-600 hover:text-blue-800 underline"
                 >
-                  {user.mail}
+                  {user.email}
                 </a>
               </div>
               
               <div>
                 <span className="text-sm text-gray-600 font-medium">Intereses:</span>
                 <div className="flex flex-wrap gap-1 mt-1">
-                  {user.intereses.map((interes, index) => (
+                  {user.interests.map((interes, index) => (
                     <span
                       key={index}
                       className="inline-block px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"

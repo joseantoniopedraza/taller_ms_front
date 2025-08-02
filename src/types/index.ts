@@ -1,12 +1,12 @@
 export interface Client {
   id: string;
-  nombre: string;
-  mail: string;
-  intereses: string[];
+  name: string;
+  email: string;
+  interests: string[];
 }
 
 export interface FormData {
-  nombre: string;
-  mail: string;
-  intereses: string[];
+  name: string;
+  email: string;
+  interests: string[];
 }

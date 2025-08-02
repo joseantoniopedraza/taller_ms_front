@@ -38,14 +38,14 @@ export default function ClientForm({ onSubmit }: ClientFormProps) {
     if (!selectedInterests.includes(interest)) {
       const newInterests = [...selectedInterests, interest];
       setSelectedInterests(newInterests);
-      setValue('intereses', newInterests);
+      setValue('interests', newInterests);
     }
   };
 
   const removeInterest = (interest: string) => {
     const newInterests = selectedInterests.filter(i => i !== interest);
     setSelectedInterests(newInterests);
-    setValue('intereses', newInterests);
+    setValue('interests', newInterests);
   };
 
   const addCustomInterest = () => {
@@ -59,7 +59,7 @@ export default function ClientForm({ onSubmit }: ClientFormProps) {
     const client: Client = {
       id: Date.now().toString(),
       ...data,
-      intereses: selectedInterests
+      interests: selectedInterests
     };
     onSubmit(client);
     reset();
@@ -74,35 +74,35 @@ export default function ClientForm({ onSubmit }: ClientFormProps) {
       <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-6">
         {/* Campo Nombre */}
         <div>
-          <label htmlFor="nombre" className="block text-md font-medium text-gray-700 mb-2">
+          <label htmlFor="name" className="block text-md font-medium text-gray-700 mb-2">
             Nombre
           </label>
           <input
-            {...register('nombre')}
+            {...register('name')}
             type="text"
-            id="nombre"
+            id="name"
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             placeholder="Ingresa tu nombre"
           />
-          {errors.nombre && (
-            <p className="mt-1 text-sm text-red-600">{errors.nombre.message}</p>
+          {errors.name && (
+            <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
           )}
         </div>
 
         {/* Campo Email */}
         <div>
-          <label htmlFor="mail" className="block text-md font-medium text-gray-700 mb-2">
+          <label htmlFor="email" className="block text-md font-medium text-gray-700 mb-2">
             Email
           </label>
           <input
-            {...register('mail')}
+            {...register('email')}
             type="email"
-            id="mail"
+            id="email"
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             placeholder="ejemplo@correo.com"
           />
-          {errors.mail && (
-            <p className="mt-1 text-sm text-red-600">{errors.mail.message}</p>
+          {errors.email && (
+            <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
           )}
         </div>
 
@@ -180,8 +180,8 @@ export default function ClientForm({ onSubmit }: ClientFormProps) {
             </div>
           )}
 
-          {errors.intereses && (
-            <p className="mt-1 text-sm text-red-600">{errors.intereses.message}</p>
+          {errors.interests && (
+            <p className="mt-1 text-sm text-red-600">{errors.interests.message}</p>
           )}
         </div>
 
