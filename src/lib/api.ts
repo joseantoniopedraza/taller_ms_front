@@ -12,7 +12,15 @@ export const api = {
   // Obtener todos los clientes
   async getClients(): Promise<Client[]> {
     try {
-      const response = await fetch(`${API_CONFIG.baseUrl}${API_CONFIG.endpoints.clients}`);
+      const response = await fetch(`${API_CONFIG.baseUrl}${API_CONFIG.endpoints.clients}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        mode: 'cors',
+        credentials: 'omit',
+      });
       
       if (!response.ok) {
         throw new ApiError(response.status, `Error fetching clients: ${response.statusText}`);
@@ -35,16 +43,17 @@ export const api = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
+        mode: 'cors',
+        credentials: 'omit',
         body: JSON.stringify(clientData),
       });
       
       if (!response.ok) {
         throw new ApiError(response.status, `Error creating client: ${response.statusText}`);
       }
-      
-      const newClient = await response.json();
-      return newClient;
+      return { ...clientData, id: "" } ;
     } catch (error) {
       if (error instanceof ApiError) {
         throw error;
